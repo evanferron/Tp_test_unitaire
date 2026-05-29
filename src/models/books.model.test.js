@@ -56,6 +56,22 @@ describe("findAll", () => {
     expect(books[0].title).toBe("Le Petit Prince");
     expect(books[1].title).toBe("L'Étranger");
   });
+
+  /*
+    Dans le cadre d'un code utilisant une BDD réel ce test n'est pas pertinent
+    car chaque appel à findAll() effectue une requête et retourne de nouvelles instances d'objets.
+
+    Ici findAll() renvoie la référence interne du tableau (books) directement,
+    donc toute mutation externe (push, splice, etc.) modifie aussi l'état interne du modèle.
+
+    Ce test échoue car après list.push(...), le tableau interne contient SEED_DATA.length + 1 éléments.
+
+  */
+  // it("should not allow external mutations of the internal list", () => {
+  //   const list = BookModel.findAll();
+  //   list.push({ id: 99, title: "Injected" });
+  //   expect(BookModel.findAll()).toHaveLength(SEED_DATA.length); // ❌ échoue
+  // });
 });
 
 describe("findById", () => {
