@@ -5,7 +5,6 @@ describe("borrow", () => {
     const req = { params: { id: 1 }, body: { borrower: "John Doe" } };
     const res = { json: jest.fn() };
     booksController.borrowBook(req, res);
-    console.log(res.json);
     expect(res.json).toHaveBeenCalledWith({
       success: true,
       data: {
