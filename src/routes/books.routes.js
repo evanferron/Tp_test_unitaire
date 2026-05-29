@@ -4,11 +4,6 @@ const booksController = require("../controllers/books.controller");
 
 router.get("/", booksController.getBooks);
 router.post("/", booksController.createBook);
-router.get("/:id", booksController.getBookById);
-router.put("/:id", booksController.updateBook);
-router.delete("/:id", booksController.deleteBook);
-router.post("/:id/borrow", booksController.borrowBook);
-router.post("/:id/return", booksController.returnBook);
 router.get("/search", (req, res) => {
   const { q } = req.query;
   const books = require("../models/books.model").findAll();
@@ -19,5 +14,10 @@ router.get("/search", (req, res) => {
   );
   res.json({ success: true, data: results });
 });
+router.get("/:id", booksController.getBookById);
+router.put("/:id", booksController.updateBook);
+router.delete("/:id", booksController.deleteBook);
+router.post("/:id/borrow", booksController.borrowBook);
+router.post("/:id/return", booksController.returnBook);
 
 module.exports = router;
