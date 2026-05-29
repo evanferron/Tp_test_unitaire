@@ -9,7 +9,6 @@ const booksController = {
     if (available !== undefined) {
       books = books.filter((b) => b.available === true);
     }
-
     res.json({ success: true, data: books });
   },
 
