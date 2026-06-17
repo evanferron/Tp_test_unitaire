@@ -7,10 +7,11 @@ router.post("/", booksController.createBook);
 router.get("/search", (req, res) => {
   const { q } = req.query;
   const books = require("../models/books.model").findAll();
+  const query = (q || "").toLowerCase();
   const results = books.filter(
     (b) =>
-      b.title.toLowerCase().includes((q || "").toLowerCase()) ||
-      b.author.toLowerCase().includes((q || "").toLowerCase()),
+      b.title.toLowerCase().includes(query) ||
+      b.author.toLowerCase().includes(query),
   );
   res.json({ success: true, data: results });
 });
